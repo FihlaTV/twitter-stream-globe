@@ -2,7 +2,7 @@
   "name": "Twitter Stream Globe",
   "description": "A real-time 3D visualization of Tweets around the world. Uses three.js (WebGL), Angular & PubNub.",
   "repository": "https://github.com/twitterdev/twitter-stream-globe",
-  "logo": "http://twitter-stream-globe.herokuapp.com/images/Twitter_logo_blue_small.png",
+  "logo": "https://twitterdev-twitter-stream-globe.glitch.me/images/Twitter_logo_blue_small.png",
   "keywords": ["node", "express", "threejs", "webgl", "twitter"],
   "env": {
 	  "TWITTER_CONSUMER_KEY": {
@@ -28,10 +28,6 @@
 	  "PUBNUB_SUBSCRIBE_KEY": {
 	    "description": "PubNub Subscribe Key generated at admin.pubnub.com (required)",
 	    "required": true
-	  },
-	  "GA_TRACKING_ID": {
-	    "description": "Google Analytics tracking ID (optional)",
-	    "required": false
 	  },
 	  "NODE_ENV": {
 	  	"value": "production",

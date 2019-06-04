@@ -16,8 +16,7 @@ router.get('/', function (req, res) {
 	// Render PubNub config for client-side javascript to reference
   res.render('index', {
 		subscribe_key: nconf.get('PUBNUB_SUBSCRIBE_KEY'),
-		channel: 'tweet_stream',
-		ga_tracking_id: nconf.get('GA_TRACKING_ID')
+		channel: 'tweet_stream'
 	});
 });
 
@@ -45,7 +44,7 @@ router.get('/stream/stop', function (req, res) {
 var trends, trendsTimestamp;
 
 /**
- * GET Returns trends from Twitter trends API
+ * GET Returns trends from Twitter API
  */
 router.get('/trends', function (req, res) {
 
@@ -65,7 +64,7 @@ router.get('/trends', function (req, res) {
 	  	return;
 		}
 
-		trends = data[0].trends
+		trends = data[0].trends;
 		trendsTimestamp = moment();
 	  res.send(trends);
 	});
