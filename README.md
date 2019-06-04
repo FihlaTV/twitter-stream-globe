@@ -7,7 +7,7 @@ This web app attaches to the Twitter API stream/filter and runs rudimentary sent
 
 Inspired by the [Web GL Globe Chrome Experiment](http://www.chromeexperiments.com/globe) and the [PubNub Real-Time WebGL Visualization](http://www.pubnub.com/blog/creating-real-time-webgl-visualizations/).
 
-![Screenshot](screenshot.png?raw=true =858x "Screenshot")
+![Screenshot](screenshot.png?raw=true=858x "Screenshot")
 [Video Capture](https://vimeo.com/104759844) | [Running Demo](http://twitter-stream-globe.herokuapp.com/) (Availability of this server may fluctuate)
 
 Installing and Running
