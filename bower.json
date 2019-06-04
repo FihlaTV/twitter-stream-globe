@@ -1,8 +1,9 @@
 {
   "name": "tweet-globe",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "authors": [
-    "Jonathan Cipriano <jcipriano@twitter.com>"
+    "Jonathan Cipriano <jcipriano@twitter.com>",
+    "Andy Piper <pipes@twitter.com>"
   ],
   "license": "MIT",
   "private": true,
