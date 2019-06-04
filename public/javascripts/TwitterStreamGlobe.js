@@ -58,9 +58,7 @@
 	  var shader = Shaders.earth;
 	  var uniforms = THREE.UniformsUtils.clone(shader.uniforms);
 
-	  // uniforms['texture'].value = THREE.ImageUtils.loadTexture('/images/world.jpg');
-    // uncomment above line and comment below for a fancier globe
-    uniforms['texture'].value = THREE.ImageUtils.loadTexture('/images/world-dark.jpg');
+	  uniforms['texture'].value = THREE.ImageUtils.loadTexture('/images/world-dark.jpg');
 
 	  var material = new THREE.ShaderMaterial({
 	    uniforms: uniforms,

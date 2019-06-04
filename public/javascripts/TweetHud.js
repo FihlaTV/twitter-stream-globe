@@ -2,7 +2,7 @@ var app = angular.module('TweetGlobe', ['ngResource', 'pubnub.angular.service'])
 
 app.controller('TweetHud', function($scope, $resource, $timeout, $rootScope, $timeout, PubNub) {
 
-	var TWEET_SAMPLE_SIZE = 30, // The number of Twitter users to display in the left-hand column
+	var TWEET_SAMPLE_SIZE = 50, // The nubmer of Tweet to display in the left-hand column
       TREND_POLL_INTERVAL = 120000; // Trend update time interval
 
   /**
@@ -22,10 +22,10 @@ app.controller('TweetHud', function($scope, $resource, $timeout, $rootScope, $ti
 
 	  $rootScope.$on(PubNub.ngMsgEv(pubnubConfig.channel), function(event, payload) {
       
-      // Add Tweet to this hud
+      // Add tweet to this hud
 	    addTweet(payload.message);
 
-      // Add Tweet to 3D globe
+      // Add tweet to 3D globe
       TwtrGlobe.onTweet(payload.message);
 	  });
     
@@ -33,14 +33,14 @@ app.controller('TweetHud', function($scope, $resource, $timeout, $rootScope, $ti
   }
 
   /**
-   * GET request trends every TREND_POLL_INTERVAL and sets them on bound model
+   * GET request trends every TREND_POLL_INTERVAL and sets them on binded model
    */
   function getTrends () {
 
     $scope.trendsResource = $resource('/trends');
 
     $scope.trendsResource.query( { }, function (res) {
-      $scope.trends = res.slice(0, 35);
+      $scope.trends = res;
     });
 
     $timeout(function () {
@@ -49,7 +49,7 @@ app.controller('TweetHud', function($scope, $resource, $timeout, $rootScope, $ti
   }
 
   /**
-   * Adds Tweet data to bound model
+   * Adds Tweet data to binded model
    */
   function addTweet (tweet) {
 

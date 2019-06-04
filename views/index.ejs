@@ -9,13 +9,13 @@
     <meta property="twitter:title" content="The Pulse of the Planet" />
     <meta property="twitter:description" content="A real-time 3D visualization of Tweets from around the world." />
     <meta property="twitter:image" content="https://raw.githubusercontent.com/twitterdev/twitter-stream-globe/master/screenshot.png" />
-    <meta property="twitter:url" content="https://twitterdev-twitter-stream-globe.glitch.me/" />
+    <meta property="twitter:url" content="http://twitter-stream-globe.herokuapp.com" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="The Pulse of the Planet" />
     <meta property="og:image" content="https://raw.githubusercontent.com/twitterdev/twitter-stream-globe/master/screenshot.png" />
     <meta property="og:description" content="A real-time 3D visualization of Tweets from around the world." />
-    <meta property="og:url" content="https://twitterdev-twitter-stream-globe.glitch.me/" />
+    <meta property="og:url" content="http://twitter-stream-globe.herokuapp.com" />
     <meta property="og:site_name" content="The Pulse of the Planet" />
 
     <link href='//fonts.googleapis.com/css?family=Lato:300,400,700|Share+Tech+Mono' rel='stylesheet' type='text/css'>
@@ -27,10 +27,12 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/pubnub/3.6.3/pubnub.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/stats.js/r11/Stats.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"/></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-resource.min.js"></script>
     <script src="/vendor/pubnub-angular/lib/pubnub-angular.js"></script>
+    <script src="//js.leapmotion.com/leap-0.6.3.min.js"></script>
+    <script src="//js.leapmotion.com/leap-plugins-0.1.9.js"></script>
 
     <script>
       // PubNub config rendered server side so that config is in one place
@@ -50,8 +52,8 @@
     <div id="tweet-hud" ng-controller="TweetHud">
 
       <div id="header">
-        <a href="https://twitter.com"><h1>The Pulse of the Planet</h1></a>
-        <span id="twitter-dev"><a href="https://developer.twitter.com">developer.twitter.com</a><span class="text-pipe">|</span><a href="https://twitter.com/intent/user?screen_name=TwitterDev">@TwitterDev</a></span>
+        <h1>The Pulse of the Planet</h1>
+        <span id="twitter-dev"><a href="https://dev.twitter.com">dev.twitter.com</a><span class="text-pipe">|</span><a href="https://twitter.com/intent/user?screen_name=TwitterDev">@TwitterDev</a></span>
       </div>
 
       <div id="left-panel" class="hud-panel">
@@ -59,8 +61,8 @@
 
           <!-- Repeats for every Tweet in the $scope.tweets model -->
           <div ng-repeat="tweet in tweets" class="tweet-item {{tweet.sentiment.state}}">
-            <img ng-src="{{tweet.user.profile_image_url_https}}" alt="Twitter user avatar image"/>
-            <span class="text"><a href="{{tweet.user.profile_image_url_https}}" target="_blank">@{{tweet.user.screen_name}}</a></span>
+            <img ng-src="{{tweet.user.profile_image_url}}" />
+            <span class="text"><a href="{{tweet.user.profile_image_url}}" target="_blank">@{{tweet.user.screen_name}}</a></span>
           </div>
 
         </div>
@@ -93,16 +95,26 @@
       </div>
 
       <div id="logo-holder">
-        <img id="pubnub-logo" src="/images/pubnub.png" alt="PubNub logo"/>
-        <img id="html5-logo" src="/images/html5-badge-h-connectivity-graphics.png" alt="HTML 5 logo"/>
-        <img id="nodejs-logo" src="/images/logo.svg" alt="NodeJS logo"/>
+        <img id="pubnub-logo" src="/images/pubnub.png" />
+        <img id="html5-logo" src="/images/html5-badge-h-connectivity-graphics.png" />
+        <img id="nodejs-logo" src="/images/logo.svg" />
       </div>
     </div>
 
     <script src="/javascripts/shaders.js"></script>
     <script src="/javascripts/TweetBeacon.js"></script>
+    <script src="/javascripts/LeapController.js"></script>
     <script src="/javascripts/TwitterStreamGlobe.js"></script>
     <script src="/javascripts/TweetHud.js"></script>
 
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', '<%= ga_tracking_id %>', 'auto');
+      ga('send', 'pageview');
+    </script>
   </body>
 </html>

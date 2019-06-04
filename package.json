@@ -7,22 +7,22 @@
   },
   "main": "bin/www",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "cookie-parser": "^1.4.4",
+    "body-parser": "~1.0.0",
+    "cookie-parser": "~1.0.1",
     "debug": "~0.7.4",
-    "ejs": "~2.5.5",
-    "express": "^4.16.4",
+    "ejs": "~0.8.5",
+    "express": "~4.2.0",
     "moment": "^2.8.2",
-    "morgan": "^1.9.1",
+    "morgan": "~1.0.0",
     "nconf": "^0.6.9",
     "node-compass": "0.2.3",
     "pubnub": "^3.6.7",
-    "sentiment": "^5.0.0",
+    "sentiment": "^1.0.1",
     "serve-favicon": "^2.0.0",
     "twit": "^1.1.18"
   },
   "engines": {
-    "node": "10",
+    "node": "0.10.x",
     "npm": "1.2.x"
   }
 }

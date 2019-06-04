@@ -1,10 +1,10 @@
-var Sentiment = require('sentiment');
+var sentiment = require('sentiment');
 var Twit = require('twit');
 var Pubnub = require('pubnub');
 var fs = require('fs');
 var nconf = require('nconf');
 
-nconf.env().file({ file: 'config.json' });
+nconf.file({ file: 'config.json' }).env();
 
 TweetPublisher = { };
 
@@ -28,7 +28,6 @@ var stream, cachedTweet, publishInterval;
 TweetPublisher.start = function () {
 
 	var response = { };
-  var sentiment = new Sentiment();
 
 	// If the stream does not exist create it
 	if (!stream) {
@@ -39,23 +38,18 @@ TweetPublisher.start = function () {
 		// When Tweet is received only process it if it has geo data
 		stream.on('tweet', function (tweet) {	
 			// calculate sentiment with "sentiment" module
-      let tweetText = tweet.extended_tweet?tweet.extended_tweet.full_text:tweet.full_text?tweet.full_text:tweet.text;
-      
-      tweet.sentiment = sentiment.analyze(tweetText);
+			tweet.sentiment = sentiment(tweet.text);
 
 			// save the Tweet so that the very latest Tweet is available and can be published
-			cachedTweet = tweet;
-
-      // uncomment to see the Tweet text logged to the console
-      // console.log(tweetText);
+			cachedTweet = tweet
 		});
 
-		response.message = 'Stream created and started.';
+		response.message = 'Stream created and started.'
 	}
 	// If the stream exists start it
 	else {
 		stream.start();
-		response.message = 'Stream already exists and started.';
+		response.message = 'Stream already exists and started.'
 	}
 	
 	// Clear publish interval just be sure they don't stack up (probably not necessary)
@@ -63,13 +57,13 @@ TweetPublisher.start = function () {
 		clearInterval(publishInterval);
 	}
 
-	// Only publish a Tweet every 85 milliseconds so that the browser view is not overloaded
+	// Only publish a Tweet every 100 millseconds so that the browser view is not overloaded
 	// This will provide a predictable and consistent flow of real-time Tweets
 	publishInterval = setInterval(function () {
 		if (cachedTweet) {
 			publishTweet(cachedTweet);
 		}
-	}, 85); // Adjust the interval to increase or decrease the rate at which Tweets sent to the clients
+	}, 100); // Adjust the interval to increase or decrease the rate at which Tweets sent to the clients
 
 	return response;
 }
@@ -84,10 +78,10 @@ TweetPublisher.stop = function () {
 	if (stream) {
 		stream.stop();
 		clearInterval(publishInterval);
-		response.message = 'Stream stopped.';
+		response.message = 'Stream stopped.'
 	}
 	else {
-		response.message = 'Stream does not exist.';
+		response.message = 'Stream does not exist.'
 	}
 
 	return response;
