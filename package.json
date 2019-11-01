@@ -13,7 +13,7 @@
     "ejs": "~0.8.5",
     "express": "~4.2.0",
     "moment": "^2.8.2",
-    "morgan": "~1.0.0",
+    "morgan": "~1.9.1",
     "nconf": "^0.6.9",
     "node-compass": "0.2.3",
     "pubnub": "^3.6.7",
